@@ -11,7 +11,7 @@ public interface IUserService {
 
     User getUserById(Long id);
 
-    void registerUser(User user);
+    void registerUser(Long id, User user);
 
     void updateUser(Long id, User user);
 
