@@ -36,7 +36,12 @@ public class UserService implements IUserService {
 
     public void patchUser(Long id, Map<String, String> partialUser) {
         User user = userRepository.getUserById(id);
-
+        String updatedUsername = partialUser.get("username");
+        String updatedPassword = partialUser.get("password");
+        String updatedEmail = partialUser.get("email");
+        user.setUsername(updatedUsername);
+        user.setPassword(updatedPassword);
+        user.setEmail(updatedEmail);
         userRepository.updateUser(id, user);
     }
 
