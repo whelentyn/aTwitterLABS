@@ -11,7 +11,7 @@ public interface IUserService {
 
     User getUserByParam (Object param) throws Exception;
 
-    void registerUser(User user);
+    void registerUser(User user) throws Exception;
 
     void updateUser(Long id, User user);
 

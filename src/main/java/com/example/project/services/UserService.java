@@ -24,20 +24,27 @@ public class UserService implements IUserService {
     public User getUserByParam (Object param) throws Exception {
         List<String> validParams = List.of(new String[]{"id", "firstname", "lastname", "username"});
         if (validParams.contains(param)) {
-            return userRepository.getUserBy(param);
+            return userRepository.getUserByParam(param);
         } else {
-            throw new Exception("403: Access denied!");
+            throw new Exception("403-FORBIDDEN: Access denied!");
         }
     }
 
-    public void registerUser(User user) { userRepository.createUser(user); }
+    public void registerUser(User user) throws Exception {
+        if (userRepository.getAllUsers().stream()
+                .map(User::getUsername)
+                .anyMatch(username -> username.equals(user.getUsername()))) {
+            throw new Exception("409-CONFLICT: Username already exists!");
+        }
+        userRepository.createUser(user);
+    }
 
     public void updateUser(Long id, User user) {
         userRepository.updateUser(id, user);
     }
 
     public void patchUser(Long id, Map<String, String> partialUser) {
-        User user = userRepository.getUserBy(id);
+        User user = userRepository.getUserByParam(id);
         String updatedUsername = partialUser.get("username");
         String updatedPassword = partialUser.get("password");
         String updatedEmail = partialUser.get("email");

@@ -27,7 +27,7 @@ public class UserRepository {
     }
 
     public void updateUser(Long id, User user) {
-        getUserBy(id);
+        getUserByParam(id);
         user.setId(id);
         USERS.put(id, user);
     }
@@ -36,7 +36,7 @@ public class UserRepository {
         USERS.remove(id);
     }
 
-    public User getUserBy(Object param) {
+    public User getUserByParam(Object param) {
         User user = USERS.get(param);
         if (Objects.isNull(user)) {
             throw new UserNotFoundException(String.format("User with parameter %s was not found", param));
