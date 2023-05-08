@@ -4,10 +4,7 @@ import com.example.project.exceptions.UserNotFoundException;
 import com.example.project.models.User;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -17,7 +14,7 @@ public class UserRepository {
     private Long index;
 
     public List<User> getAllUsers() {
-        return USERS.values().stream().collect(Collectors.toList());
+        return new ArrayList<>(USERS.values());
     }
 
     public void createUser(User user) {

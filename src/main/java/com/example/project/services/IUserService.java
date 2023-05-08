@@ -20,5 +20,4 @@ public interface IUserService {
     void deleteUser(Long id);
 
 
-
 }

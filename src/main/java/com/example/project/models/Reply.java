@@ -1,23 +1,26 @@
 package com.example.project.models;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "reacts")
-public class React {
+@Table(name = "replies")
+public class Reply {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "post")
-    private Post post;
+    @Column
+    private String content;
 
     @ManyToOne
     @JoinColumn(name = "user")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "post")
+    private Post post;
 
 }
