@@ -9,15 +9,16 @@ public interface IUserService {
 
     List<User> getAllUsers();
 
-    User getUserById(Long id);
+    User getUserByParam (Object param) throws Exception;
 
-    void registerUser(Long id, User user);
+    void registerUser(User user);
 
     void updateUser(Long id, User user);
 
     void patchUser(Long id, Map<String, String> partialUser);
 
     void deleteUser(Long id);
+
 
 
 }

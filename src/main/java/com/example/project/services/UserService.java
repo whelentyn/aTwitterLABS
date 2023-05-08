@@ -21,21 +21,23 @@ public class UserService implements IUserService {
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
-
-    public User getUserById(Long id) {
-        return userRepository.getUserById(id);
+    public User getUserByParam (Object param) throws Exception {
+        List<String> validParams = List.of(new String[]{"id", "firstname", "lastname", "username"});
+        if (validParams.contains(param)) {
+            return userRepository.getUserBy(param);
+        } else {
+            throw new Exception("403: Access denied!");
+        }
     }
 
-    public void registerUser(Long id, User user) {
-        userRepository.createUser(id, user);
-    }
+    public void registerUser(User user) { userRepository.createUser(user); }
 
     public void updateUser(Long id, User user) {
         userRepository.updateUser(id, user);
     }
 
     public void patchUser(Long id, Map<String, String> partialUser) {
-        User user = userRepository.getUserById(id);
+        User user = userRepository.getUserBy(id);
         String updatedUsername = partialUser.get("username");
         String updatedPassword = partialUser.get("password");
         String updatedEmail = partialUser.get("email");

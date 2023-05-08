@@ -17,6 +17,12 @@ public class User {
     private String username;
 
     @Column
+    private String firstname;
+
+    @Column
+    private String lastname;
+
+    @Column
     private String email;
 
     @Column
@@ -33,6 +39,8 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

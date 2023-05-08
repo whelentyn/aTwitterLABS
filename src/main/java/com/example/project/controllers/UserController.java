@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping(path="api/v1/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -18,19 +19,14 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping(value = "/users/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
-    }
-
-    @GetMapping(value = "/users/byParam")
-    public User getUserByParam(@RequestParam Long id) {
-        return userService.getUserById(id);
+    @GetMapping(value = "/users/{param}")
+    public User getUserByParam(@PathVariable Object param) throws Exception {
+        return userService.getUserByParam(param);
     }
 
     @PostMapping(value = "/users")
-    public void registerUser(@RequestBody Long id, @RequestBody User user) {
-        userService.registerUser(id, user);
+    public void registerUser(@RequestBody User user) {
+        userService.registerUser(user);
     }
 
     @PostMapping(value = "/users/{id}")
@@ -38,8 +34,11 @@ public class UserController {
         userService.patchUser(id, partialUser);
     }
 
+
+
     @DeleteMapping(value = "/users/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
+
 }
