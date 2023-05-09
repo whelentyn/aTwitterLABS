@@ -43,7 +43,7 @@ public class UserController {
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "An error occurred while GETTING the User",
                     content = @Content) })
-    @GetMapping(value = "/{param}")
+    @GetMapping(value = "search/{param}")
     public User getUserByParam(@PathVariable Object param) throws Exception {
         return userService.getUserByParam(param);
     }
@@ -57,7 +57,7 @@ public class UserController {
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "An error occurred while registering the User",
                     content = @Content) })
-    @PostMapping
+    @PostMapping("/register")
     public void registerUser(@RequestBody User user) throws Exception {
         userService.registerUser(user);
     }
@@ -71,7 +71,7 @@ public class UserController {
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "An error occurred while patching the User",
                     content = @Content) })
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/update")
     public void patchUser(@PathVariable Long id, @RequestBody Map<String, String> partialUser) {
         userService.patchUser(id, partialUser);
     }
@@ -86,8 +86,7 @@ public class UserController {
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "An error occurred while patching the User",
                     content = @Content) })
-    @PostMapping("/{id}")
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}/delete")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
