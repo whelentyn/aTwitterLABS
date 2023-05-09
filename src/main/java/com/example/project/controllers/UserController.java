@@ -1,7 +1,7 @@
 package com.example.project.controllers;
 
 import com.example.project.models.User;
-import com.example.project.services.UserService;
+import com.example.project.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping(path="api/v1/users")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @GetMapping
     public List<User> getAllUsers() {
