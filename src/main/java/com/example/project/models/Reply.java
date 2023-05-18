@@ -9,7 +9,7 @@ import lombok.Data;
 public class Reply {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long id;
 
     @Column

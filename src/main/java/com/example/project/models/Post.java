@@ -14,7 +14,7 @@ public class Post {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long id;
 
     @Column

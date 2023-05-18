@@ -9,7 +9,7 @@ import lombok.Data;
 @Table(name = "reacts")
 public class React {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long id;
 
     @ManyToOne
